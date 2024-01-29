@@ -51,9 +51,7 @@ from matplotlib.figure import Figure
 
 from PIL import Image
 
-
 #=======================================================================================
-
 # GLOBAL VARIABLES
 flag_TT = 0
 flag_READY_TO_PRINT = 0
