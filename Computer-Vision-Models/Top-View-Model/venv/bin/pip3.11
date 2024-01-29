@@ -1,4 +1,4 @@
-#!/home/joseph/Documents/seg/venv/bin/python
+#!/home/joseph/Documents/GitHub/3D-Printer-Failure-Analysis/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
