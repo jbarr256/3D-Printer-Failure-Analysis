@@ -1,0 +1,65 @@
+#define stepPinA 2
+#define dirPinA 5 
+#define stepPinB 3
+#define dirPinB 6
+
+void setup() {
+  // Sets the two pins as Outputs
+  pinMode(stepPinA,OUTPUT); 
+  pinMode(dirPinA,OUTPUT);
+  pinMode(stepPinB,OUTPUT); 
+  pinMode(dirPinB,OUTPUT);
+}
+
+void motorA(){
+  digitalWrite(dirPinA,HIGH); // Enables the motor to move in a particular direction
+  // Makes 200 pulses for making one full cycle rotation
+  for(int x = 0; x < 1600; x++) {
+    digitalWrite(stepPinA,HIGH); 
+    delayMicroseconds(700); 
+    digitalWrite(stepPinA,LOW); 
+    delayMicroseconds(700); 
+  }
+  delay(500);
+  
+  digitalWrite(dirPinA,LOW); //Changes the rotations direction
+  // Makes 400 pulses for making two full cycle rotation
+  for(int x = 0; x < 3200; x++) {
+    digitalWrite(stepPinA,HIGH);
+    delayMicroseconds(500);
+    digitalWrite(stepPinA,LOW);
+    delayMicroseconds(500);
+  }
+  delay(500);
+
+}
+
+void motorB(){
+   digitalWrite(dirPinB,HIGH); // Enables the motor to move in a particular direction
+  // Makes 200 pulses for making one full cycle rotation
+  for(int x = 0; x < 1600; x++) {
+    digitalWrite(stepPinB,HIGH); 
+    delayMicroseconds(700); 
+    digitalWrite(stepPinB,LOW); 
+    delayMicroseconds(700); 
+  }
+  delay(500); 
+  
+  digitalWrite(dirPinB,LOW); //Changes the rotations direction
+  // Makes 400 pulses for making two full cycle rotation
+  for(int x = 0; x < 3200; x++) {
+    digitalWrite(stepPinB,HIGH);
+    delayMicroseconds(500);
+    digitalWrite(stepPinB,LOW);
+    delayMicroseconds(500);
+  }
+  delay(500);
+
+}
+
+void loop() {
+motorA();
+motorB();
+
+return 0;
+}
