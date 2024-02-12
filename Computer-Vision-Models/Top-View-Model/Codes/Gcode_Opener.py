@@ -4,7 +4,7 @@ from stl import mesh
 from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 
-my_mesh = mesh.Mesh.from_file('/home/joseph/Documents/GitHub/3D-Printer-Failure-Analysis/Computer-Vision-Models/Top-View-Model/Test-STL/low_poly_bear.stl')
+my_mesh = mesh.Mesh.from_file('/Users/Joseph/Documents/GitHub/3D-Printer-Failure-Analysis/Computer-Vision-Models/Top-View-Model/Test-STL/70mm_low_poly_fox_MatterControl.stl')
 #Test to Plot
 
 figure = plt.figure()
@@ -15,3 +15,4 @@ scale = my_mesh.points.flatten()
 axes.auto_scale_xyz(scale, scale, scale)
 
 plt.show()
+
