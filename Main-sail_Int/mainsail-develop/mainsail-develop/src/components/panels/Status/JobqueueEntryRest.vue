@@ -17,7 +17,7 @@ import BaseMixin from '@/components/mixins/base'
 import { ServerJobQueueStateJob } from '@/store/server/jobQueue/types'
 import { mdiFileMultiple } from '@mdi/js'
 @Component
-export default class StatusPanelJobqueueEntry extends Mixins(BaseMixin) {
+export default class StatusPanelJobqueueEntryRest extends Mixins(BaseMixin) {
     mdiFileMultiple = mdiFileMultiple
 
     @Prop({ type: Array, required: true }) jobs!: ServerJobQueueStateJob[]
@@ -84,7 +84,7 @@ export default class StatusPanelJobqueueEntry extends Mixins(BaseMixin) {
         const weight = this.sums.filamentWeight
         if (weight === 0) return null
 
-        if (weight >= 1000) return (length / 1000).toFixed(1) + ' kg'
+        if (weight >= 1000) return (weight / 1000).toFixed(1) + ' kg'
 
         return weight.toFixed(0) + ' g'
     }

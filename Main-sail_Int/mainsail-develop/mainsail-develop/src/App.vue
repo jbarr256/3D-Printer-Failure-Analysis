@@ -39,7 +39,10 @@ import { panelToolbarHeight, topbarHeight, navigationItemHeight } from '@/store/
 import TheTimelapseRenderingSnackbar from '@/components/TheTimelapseRenderingSnackbar.vue'
 import TheFullscreenUpload from '@/components/TheFullscreenUpload.vue'
 import TheUploadSnackbar from '@/components/TheUploadSnackbar.vue'
+
 import TheManualProbeDialog from '@/components/dialogs/TheManualProbeDialog.vue'
+import TheAlert from '@/components/dialogs/TheAlert.vue'
+
 import TheBedScrewsDialog from '@/components/dialogs/TheBedScrewsDialog.vue'
 import TheScrewsTiltAdjustDialog from '@/components/dialogs/TheScrewsTiltAdjustDialog.vue'
 import { setAndLoadLocale } from './plugins/i18n'
@@ -59,7 +62,10 @@ Component.registerHooks(['metaInfo'])
         TheSidebar,
         TheFullscreenUpload,
         TheUploadSnackbar,
+
         TheManualProbeDialog,
+        TheAlert,
+        
         TheBedScrewsDialog,
         TheScrewsTiltAdjustDialog,
     },
