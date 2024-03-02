@@ -1,0 +1,8 @@
+names:
+  0: spagehtti
+  1: stringing
+  2: under extrusion
+  3: warping
+path: /content/gdrive/MyDrive/3dPrinterFault/dataset-after-split/2024-03-01_5-Fold_Cross-val/split_5
+train: train
+val: val
