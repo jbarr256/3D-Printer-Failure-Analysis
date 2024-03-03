@@ -11,8 +11,8 @@ pin 3 = 0x800
 pin 4 = 0x100
 pin 5 = 0x200
 .
-pin 6 = 0x100 //dont work (UART)
-pin 7 = 0x200 //dont work (UART)
+pin 6 = 0x100 // (UART)
+pin 7 = 0x200 // (UART)
 .
 pin 8 = 0x80
 pin 9 = 0x20
