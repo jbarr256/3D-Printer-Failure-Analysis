@@ -108,25 +108,33 @@ void SerialReceive() {
 void MotorControl(){
   switch(state){
     case Idle:
-    Serial.println("Current State: Idle");
+   
     if(newData == true){
+    Serial.println("Current State: Downward");
     state = Downward;
     newData = false; 
     }
   
     break;
     case Downward:
-    Serial.println("Current State: Downward");
+
     if(LScheckA() == 1){
+      Serial.println("Current State: Upward");
       state = Upward; 
       but_press = 0;
       newData = false; 
       }
       break;
     case Upward:
-    Serial.println("Current State: Upward");
+
       if(LScheckB() == 1){
+      Serial.println("Current State: Idle");
+
+      for(int i = 0; i <= 20; i++){
       Serial.println("1");
+      delayMicroseconds(300);        
+      }
+
       state = Idle;  
       but_pressB = 0;
       newData = false; 
@@ -156,12 +164,12 @@ void MotorBackward(){
   PORT->Group[0].OUTSET.reg = (0x400); //stepPinA
   PORT->Group[0].OUTSET.reg = (0x004); //setpPinB
 
-  delayMicroseconds(100); 
+  delayMicroseconds(200); 
 
   PORT->Group[0].OUTCLR.reg = (0x400); //stepPinA
   PORT->Group[0].OUTCLR.reg = (0x004); //stepPinB
 
-  delayMicroseconds(100); 
+  delayMicroseconds(200); 
 
 }
 
@@ -172,13 +180,13 @@ void MotorForward(){
   PORT->Group[0].OUTSET.reg = (0x400); //stepPinA
   PORT->Group[0].OUTSET.reg = (0x004); //stepPinB
 
-  delayMicroseconds(100); 
+  delayMicroseconds(200); 
 
 
   PORT->Group[0].OUTCLR.reg = (0x400); //stepPinA
   PORT->Group[0].OUTCLR.reg = (0x004); //stepPinB
 
-  delayMicroseconds(100); 
+  delayMicroseconds(200); 
 }
 
 
