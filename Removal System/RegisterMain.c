@@ -173,7 +173,8 @@ void MotorControl(){
 
   switch(state){
     case Idle:
-    PORT->Group[0].OUTCLR.reg = (0x40);        
+    PORT->Group[0].OUTCLR.reg = (0x40);
+    break;        
     case Downward:
     MotorBackward();
     break;
