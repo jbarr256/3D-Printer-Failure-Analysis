@@ -194,34 +194,34 @@ void MotorBackward(){
 
 
   PORT->Group[0].OUTCLR.reg = (0x800); //dirPinA
-  PORT->Group[0].OUTCLR.reg = (0x10); //dirPinB
+  PORT->Group[0].OUTSET.reg = (0x10); //dirPinB
 
   PORT->Group[0].OUTSET.reg = (0x400); //stepPinA
   PORT->Group[0].OUTSET.reg = (0x004); //setpPinB
 
-  delayMicroseconds(200); 
+  delayMicroseconds(100); 
 
   PORT->Group[0].OUTCLR.reg = (0x400); //stepPinA
   PORT->Group[0].OUTCLR.reg = (0x004); //stepPinB
 
-  delayMicroseconds(200); 
+  delayMicroseconds(100); 
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 void MotorForward(){ 
 
   PORT->Group[0].OUTSET.reg = (0x800); //dirPinA
-  PORT->Group[0].OUTSET.reg = (0x10); //dirPinB
+  PORT->Group[0].OUTCLR.reg = (0x10); //dirPinB
   PORT->Group[0].OUTSET.reg = (0x400); //stepPinA
   PORT->Group[0].OUTSET.reg = (0x004); //stepPinB
 
-  delayMicroseconds(200); 
+  delayMicroseconds(100); 
 
 
   PORT->Group[0].OUTCLR.reg = (0x400); //stepPinA
   PORT->Group[0].OUTCLR.reg = (0x004); //stepPinB
 
-  delayMicroseconds(200); 
+  delayMicroseconds(100); 
 }
 
 
