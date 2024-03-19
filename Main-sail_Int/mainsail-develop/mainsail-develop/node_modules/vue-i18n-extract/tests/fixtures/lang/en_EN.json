@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "Title",
+    "title2": "Title 2"
+  },
+  "content": {
+    "paragraph": {
+      "p_1": "Clicked {count} times",
+      "p.2": "One Thing | Two Things"
+    },
+    "link": {
+      "a": "Click {link}",
+      "b": "Here"
+    }
+  },
+  "Key used as default translation. Second sentence.": "Key used as default translation. Second sentence.",
+  "Translation component in code.": "Translation component in code.",
+  "missing": {
+    "german": "Missing!"
+  },
+  "unused_json": "This key is unused.",
+  "unused_nested": {
+    "auth": "Auth Pages",
+    "forgot": "Forgot Password"
+  }
+}
