@@ -1,0 +1,173 @@
+/*use state machines to fit the following description:
+
+Idle State: 
+- Check for any Serial Communication Input
+- Program Receives Serial Input; Move to Downward State
+
+Downward State:
+- Move motor in the downward direction 
+- Once motor recieves input from limit switch move to Upward State
+
+Upward State: 
+- Move motor in upward direction 
+- Once motor receives input from limit switch, output serial communication (1)
+- Move to Idle State 
+
+*/
+
+
+
+enum stateMachine{Idle,Downward,Upward}state;
+///0000 0000 0000
+#define stepPinA 2 //3 on diagram //pulA
+#define dirPinA 3  //4 on diagram //dirA
+#define stepPinB 0 //1 on diagram //PulB
+#define dirPinB 1 //2 on diagram  //dirB
+#define ENpin 10 //11 on diagram
+#define LimitSwitchA 4 //5 on diagram
+#define LimitSwitchB 5 //6 on diagram
+/*#define PORT_PA00 0x00000000
+#define PORT_PA01 
+#define PORT_PA02 
+#define PORT_PA03 
+#define PORT_PA04
+#define PORT_PA05
+#define PORT_PA06
+#define PORT_PA07
+#define PORT_PA08
+#define PORT_PA09
+#define PORT_PA10
+#define PORT_PA11
+*/
+
+int preVal = HIGH;
+int but_press = 0;
+
+int preValB = HIGH;
+int but_pressB = 0;
+char receivedChar;
+boolean newData = false;
+
+void setup() {
+
+  Serial.begin(9600);
+  Serial.println("Serial Start:");
+  pinMode(LimitSwitchA, INPUT_PULLUP);
+  pinMode(LimitSwitchB, INPUT_PULLUP);
+  pinMode(stepPinA,OUTPUT); 
+  pinMode(dirPinA,OUTPUT);
+  pinMode(stepPinB,OUTPUT); 
+  pinMode(dirPinB,OUTPUT);
+  pinMode(ENpin, OUTPUT); 
+  digitalWrite(ENpin, LOW);
+
+}
+
+int LScheckA(){
+    int LSCA = digitalRead(LimitSwitchA);
+    if(preVal == LOW && LSCA == HIGH){
+      but_press = 1;
+    }
+    preVal = LSCA;
+    return but_press;
+}
+
+int LScheckB(){
+    int LSCB = digitalRead(LimitSwitchB);
+    if(preValB == LOW && LSCB == HIGH){
+      but_pressB = 1;
+    }
+    preValB = LSCB;
+    return but_pressB;
+}
+
+void SerialReceive() {
+    if (Serial.available() > 0) {
+        receivedChar = Serial.read();
+        newData = true;
+    }
+}
+
+
+
+void MotorControl(){
+  switch(state){
+    case Idle:
+    Serial.println("Current State: Idle");
+    if(newData == true){
+    state = Downward;
+    newData = false; 
+    }
+  
+    break;
+    case Downward:
+    Serial.println("Current State: Downward");
+    if(LScheckA() == 1){
+      state = Upward; 
+      but_press = 0;
+      newData = false; 
+      }
+      break;
+    case Upward:
+    Serial.println("Current State: Upward");
+      if(LScheckB() == 1){
+      Serial.println("1");
+      state = Idle;  
+      but_pressB = 0;
+      newData = false; 
+      }
+    break; 
+  }
+
+  switch(state){
+    case Downward:
+    MotorBackward();
+    break;
+    case Upward:
+    MotorForward();
+    break;
+  }
+      
+}
+
+
+void MotorBackward(){
+  
+
+  digitalWrite(dirPinA, LOW);
+  digitalWrite(dirPinB, LOW); 
+
+  digitalWrite(stepPinA,HIGH); 
+  digitalWrite(stepPinB,HIGH); 
+
+  delayMicroseconds(100); 
+
+  digitalWrite(stepPinA,LOW); 
+  digitalWrite(stepPinB,LOW); 
+
+  delayMicroseconds(100); 
+
+}
+
+void MotorForward(){ 
+  digitalWrite(dirPinA,HIGH); 
+  digitalWrite(dirPinB, HIGH);
+
+  digitalWrite(stepPinA,HIGH); 
+  digitalWrite(stepPinB,HIGH); 
+
+  delayMicroseconds(100); 
+
+  digitalWrite(stepPinA,LOW); 
+  digitalWrite(stepPinB,LOW); 
+
+  delayMicroseconds(100); 
+}
+
+
+
+void loop() {
+SerialReceive();
+MotorControl();
+newData == false;
+}
